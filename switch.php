@@ -27,6 +27,6 @@
          echo '6';
          break;
      case 'Sunday':
-         echo '7';
+         echo '7' ;
          break;                                                    
  }
