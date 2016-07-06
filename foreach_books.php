@@ -29,9 +29,9 @@ $books = array(
     )
 );
 
-foreach ($books as $index => $book) {
+foreach ($books as $title => $book) {
 	if($book['published'] > 1950) {
-		echo "{$index} was written in {$book['published']} by {$book['author']} and is {$book['pages']} pages long.\n";
+		echo "{$title} was written in {$book['published']} by {$book['author']} and is {$book['pages']} pages long.\n";
 	}
 	
 }
