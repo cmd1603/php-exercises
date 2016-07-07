@@ -2,10 +2,10 @@
 
 'use strict';
 // Object definition
-var student = {
-    awesomeGrade: 80,
-    name: null,
-    subjects: [],
+    $student = {
+    $awesomeGrade: 80,
+    $name: null,
+    $subjects: [],
     calculateAverage: function () {
         var average = 0;
         this.subjects.forEach(function (subject) {
@@ -14,11 +14,10 @@ var student = {
         return average / this.subjects.length;
     },
     addSubject: function (name, grade) {
-        var subject = {
-            name: name,
-            grade: grade
+            $subject = [];
+            $subject['name'] = 'History';
+            $subject['grade'] = 20;
         };
-        this.subjects.push(subject);
     },
     isAwesome: function () {
         return this.calculateAverage() > this.awesomeGrade;
