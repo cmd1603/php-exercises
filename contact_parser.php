@@ -2,9 +2,10 @@
 
 function parseContacts($filename)
 {
-    $contactsArray = array();
+    $contacts = array();
     $handle = fopen($filename, 'r');
     $contents = fread($handle, filesize($filename));
+    fclose($handle);
     $contentsArray = explode("\n", trim($contents));
 
     foreach ($contentsArray as $value) {
@@ -22,7 +23,7 @@ function parseContacts($filename)
     	];
     }
 
-    fclose($handle);
+    
 
     // todo - read file and parse contacts
 
