@@ -23,3 +23,27 @@ for ($i = 0; $i < count($letters); $i++) {
 }
 
 print_r($letters);
+
+
+//Array Work 2
+
+//Write a function to remove all the vowels from the following:
+
+$letters = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i');
+//    unset($letters[0], $letters [4], $letters [8]);
+
+//print_r($letters);
+
+function removeVowels(&$vowels)
+{
+    foreach ($vowels as $index => $vowel) {
+        if ($vowel == 'a' || $vowel == 'e' || $vowel == 'i' || $vowel == 'o' || $vowel == 'u') {
+            unset($vowels[$index]);
+        }
+    }
+    return $vowels;
+}
+
+removeVowels($letters);
+
+print_r($letters);

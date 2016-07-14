@@ -23,30 +23,49 @@ function parseContacts($filename)
     	];
     }
 
-    // todo - read file and parse contacts
+//     todo - read file and parse contacts
 
     return $contacts;
 }
+
+//--------end of first exercise----------//
+
 
 $contacts = parseContacts('contacts.txt');
 function searchByName ($array, $name)
 {
 	$filtered = [];
 	foreach ($array as $contact) {
-		if (strpos($names['name'], $name) !== false) {
+		if (strpos($contact['name'], $name) !== false) {
 			$filtered[] = $contact;
 		}
 	}
 	return $filtered;
 }
 
-var_dump($contacts);
+// var_dump($contacts);
 function formatContact ($array) {
 	echo "\n";
-	echo str_pad('Name', 12, " ", STR_PAD_RIGHT);
-	echo str_pad(' | ', 12, " ", STR_PAD_RIGHT);
-	// foreach ($array as $contact) {
-	// echo str_pad('');
+	echo str_pad(' Name ', 12, " ", STR_PAD_RIGHT);
+	echo str_pad('|', STR_PAD_RIGHT);
+	echo str_pad(' Phone Number ', 12, " ", STR_PAD_RIGHT);
+	echo str_pad('|', STR_PAD_RIGHT) . PHP_EOL;
+	echo '----------------------------' . PHP_EOL;
+	foreach ($array as $contact) {
+        echo $contact['name'] . " | ". $contact['phone'] . PHP_EOL;
+    }
+//    print_r($array);
+}
+
+function addContact($name, $number) {
+	$filename = ('contacts.txt');
+	$handle = fopen($filename, 'a');
+	fwrite($handle, $name . '|' . $number . "\n");
+	fclose($handle);
+}
+
+function deleteContact($name) {
+
 }
 
 do {
@@ -56,12 +75,20 @@ do {
 	echo '4. Delete an existing contact.', PHP_EOL;
 	echo '5. Exit.', PHP_EOL;
 	echo 'Enter an option (1, 2, 3, 4 or 5):', PHP_EOL;
+
 	$selection = trim(fgets(STDIN));
 	switch ($selection) {
 		case 1:
 			formatContact($contacts);
+            echo "\n";
 			break;
 		case 2:
+			echo 'Contact Name: ';
+			$name = trim(fgets(STDIN));
+			echo 'Phone Number: ';
+			$number = trim(fgets(STDIN));
+			addContact($name, $number);
+			$contacts = parseContacts('contacts.txt');
 			break;
 		case 3:
 			echo 'Please enter a name:';
@@ -69,6 +96,9 @@ do {
 			$searchedContact = (searchByName($contacts,$name));
 			formatContact($searchedContact);
 			break;
+//        case 4:
+//            echo 'Please enter the name you want to delete:';
+//            $name = trim(fgets(STDIN));
 	}
-} while ($option != '5');
+} while ($selection != '5');
 
