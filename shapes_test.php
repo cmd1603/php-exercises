@@ -6,8 +6,10 @@ require_once 'square.php';
 
 $rectArea = new Rectangle(10,8);
 
-echo $rectArea->area() . PHP_EOL;
+echo "The rectangle's area is: " . $rectArea->area() . PHP_EOL;
+echo "The rectangle's perimeter is: " . $rectArea->perimeter() . PHP_EOL;
 
-$square = new Square(5,7);
+$square = new Square(5,5);
 
-echo $square->perimeter() . PHP_EOL;
+echo "The square's perimeter is: " . $square->perimeter() . PHP_EOL;
+echo "The square's area is: " . $square->area() . PHP_EOL;
