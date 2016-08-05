@@ -2,23 +2,44 @@
 
 class Rectangle
 {
-	public $height;
-	public $width;
+	//this is the base class for square and has all the base methods
+	private $height;
+	private $width;
 
 	public function __construct($height, $width)
 	{
-		$this->height = $height;
-		$this->width = $width;
+		$this->setHeight = $height;
+		$this->sestWidth = $width;
+	}
+
+	protected function setHeight($height)
+	{
+		$this->height = trim($height);
+	}
+
+	protected function setWidth($width)
+	{
+		$this->width = trim($width);
+	}
+
+	public function getHeight()
+	{
+		return $this->height;
+	}
+
+	public function getWidth()
+	{
+		return $this->width;
 	}
 
 	public function area()
 	{
-		return $this->height * $this->width;
+		return $this->getHeight() * $this->getWidth();
 	}
 
 	public function perimeter()
 	{
-		return ($this->height * 2) + ($this->width * 2);
+		return ($this->getHeight() * 2) + ($this->getWidth() * 2);
 	}
 }
 
