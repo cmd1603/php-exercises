@@ -5,8 +5,8 @@ date_default_timezone_set('America/Chicago');
 class Log
 {
 
-    protected $filename;
-    protected $handle;
+    private $filename;
+    private $handle;
     public $date;
     public $dateTime;
 
@@ -18,7 +18,7 @@ class Log
         $this->handle = fopen($this->filename, 'a');
     }
 
-    public function setFileName($filename)
+    private function setFileName($filename)
     {
         if(is_string($filename) && touch($filename) && is_writable($filename)) {
             $this->filename = $filename;
