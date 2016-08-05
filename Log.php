@@ -1,28 +1,37 @@
 <?php
 
+date_default_timezone_set('America/Chicago');
+
 class Log
 {
 
-    public $fileName;
-    public $handle;
+    protected $filename;
+    protected $handle;
+    public $date;
+    public $dateTime;
 
 
-//    date_default_timezone_set('America/Chicago');
+    public function __construct($prefix = 'log')
+    {
+        $logTime = date('m-d-y h:i:s');
+        $this->setFileName("{prefix}-{$logTime}.log");
+        $this->handle = fopen($this->filename, 'a');
+    }
+
+    public function setFileName($filename)
+    {
+        if(is_string($filename) && touch($filename) && is_writable($filename)) {
+            $this->filename = $filename;
+        } else {
+            echo "ERROR";
+        }
+    }
 
     public function logMessage($logLevel, $message)
     {
-        /*$filename = 'log-' . date('m-d-Y') . '.log';
-        $handle = fopen($filename, 'a');*/
-
-        $logTime = date('m-d-y h:i:s');
-
-        $message = $this ->$logTime. ' [' .$logLevel. ' ] '.$message;
-
-        fwrite($this->handle, $message.PHP_EOL);
-
-        /*fclose($handle);*/
+        $currentDate = date('Y-m-d h:i:s=T');
+        fwrite($this->handle, PHP_EOL . $currentDate . " " . "[" . $logLevel . "]" . " " . $message);
     }
-
 
     public function info($logMessage)
     {
@@ -32,6 +41,11 @@ class Log
     public function error($logMessage)
     {
         $this->logMessage('ERROR', $logMessage);
+    }
+
+    public function __destruct()
+    {
+        fclose($this->handle);
     }
 
 }

@@ -5,7 +5,7 @@ require_once 'rectangle.php';
 require_once 'square.php';
 
 $rectArea = new Rectangle(10,8);
-
+var_dump($rectArea);
 echo "The rectangle's area is: " . $rectArea->area() . PHP_EOL;
 echo "The rectangle's perimeter is: " . $rectArea->perimeter() . PHP_EOL;
 

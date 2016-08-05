@@ -3,13 +3,13 @@
 class Rectangle
 {
 	//this is the base class for square and has all the base methods
-	private $height;
-	private $width;
+	protected $height;
+	protected $width;
 
 	public function __construct($height, $width)
 	{
-		$this->setHeight = $height;
-		$this->sestWidth = $width;
+		$this->setHeight($height);
+		$this->setWidth($width);
 	}
 
 	protected function setHeight($height)
