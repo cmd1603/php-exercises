@@ -2,8 +2,10 @@
 
 class Model
 {
+	protected static $table = '';
 	//This is an array to store our key/value data
-	protected $attributes = array();
+	
+	private $attributes = [];
 
 	//This magic setter is used to populate $attributes array
 	public function __set($name, $value)
@@ -21,5 +23,10 @@ class Model
 		}
 
 		return null;
+	}
+
+	public static function getTableName()
+	{
+		return static::$table;
 	}	
 }
