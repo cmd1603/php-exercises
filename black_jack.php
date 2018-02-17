@@ -2,8 +2,8 @@
 
 // Create a blackjack game in terminal using php
 
-$suits = [];
-$cards = [];
+$suits = ['C', 'H', 'S', 'D'];
+$cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 $divider = "--------------------";
 $gap = PHP_EOL;
 
@@ -108,7 +108,40 @@ do {
 			break;
 		}
 	}
-}
+
+	// show the dealer's hand (all cards)
+	gameMessage(echoHand($dealer, "Dealer") . " Total:" . getHandTotal($dealer));
+
+	// check if player is at or above 21, and if dealer is over 17
+	if (getHandTotal($player) > 21) {
+		gameMessage("Sorry, you busted");
+	} else {
+		while(getHandTotal($dealer) < 17 && getHandTotal($player) != 21) {
+			gameMessage("Dealer's hand is less than 17. Dealer draws again." . $gap);
+			drawCard($dealer, $deck, 1);
+			gameMessage(echoHand($dealer, "Dealer") . " Total: " . getHandTotal($dealer));
+		}
+	}
+
+	// game outcome
+	if(getHandTotal($dealer) > 21) {
+		gameMessage("Dealer has busted, you win!");
+	} elseif (getHandTotal($dealer) === getHandTotal($player)) {
+		gameMessage("Dealer and player have tied. Outcome: push.");
+	} else {
+		if((getHandTotal($dealer) < 21 && getHandTotal($player) < 21) && getHandTotal($dealer) > getHandTotal($player)) {
+			gameMessage("Sorry, dealer wins.");
+		} else {
+			gameMessage("You win!");
+		}
+	}
+	gameMessage("Play again? 'Y' or 'N'");
+	$playAgain = trim(fgets(STDIN));
+	gameMessage($divider) . PHP_EOL;
+
+} while ($playAgain == 'Y' || $playAgain == 'y');
+
+exit();
 
 
 
