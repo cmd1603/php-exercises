@@ -95,22 +95,22 @@ do {
 	gameMessage(echoHand($dealer, "Dealer", true));
 
 	// echo the player hand
-	gameMessage(echoHand($player, "Player") . " Total: " . getHandTotal($player) . $gameGap);
+	gameMessage(echoHand($player, "Player") . " Total: " . getHandTotal($player) . $gap);
 
 	// player is given choice to hit until they bust or stay
 	while (getHandTotal($player) < 21) {
 		gameMessage("(H)it or (S)tay?");
 		$response = trim(fgets(STDIN));
-		if($response = "H" || $response == "h") {
+		if($response == "H" || $response == "h") {
 			drawCard($player, $deck, 1);
-			gameMessage(echoHand($player, "Player") . " Total:" . getHandTotal($player));
+			gameMessage(echoHand($player, "Player") . " Total: " . getHandTotal($player));
 		} else {
 			break;
 		}
 	}
 
 	// show the dealer's hand (all cards)
-	gameMessage(echoHand($dealer, "Dealer") . " Total:" . getHandTotal($dealer));
+	gameMessage(echoHand($dealer, "Dealer") . " Total: " . getHandTotal($dealer));
 
 	// check if player is at or above 21, and if dealer is over 17
 	if (getHandTotal($player) > 21) {
