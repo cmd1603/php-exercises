@@ -78,6 +78,37 @@ function echoHand($hand, $name, $hidden = false) {
 	return "$name: $cardString";
 }
 
+// gameplay
+do {
+	gameMessage("NEW GAME" . PHP_EOL . $divider);
+	$deck = buildDeck($suits, $cards);
+	$dealer = [];
+	$player = [];
+
+	// dealer and player each draw two cards
+	drawCard($dealer, $deck, 2);
+	drawCard($player, $deck, 2);
+
+	gameMessage("Dealer and player draw 2 cards each.");
+
+	// echo the dealer hand, only showing the first card
+	gameMessage(echoHand($dealer, "Dealer", true));
+
+	// echo the player hand
+	gameMessage(echoHand($player, "Player") . " Total: " . getHandTotal($player) . $gameGap);
+
+	// player is given choice to hit until they bust or stay
+	while (getHandTotal($player) < 21) {
+		gameMessage("(H)it or (S)tay?");
+		$response = trim(fgets(STDIN));
+		if($response = "H" || $response == "h") {
+			drawCard($player, $deck, 1);
+			gameMessage(echoHand($player, "Player") . " Total:" . getHandTotal($player));
+		} else {
+			break;
+		}
+	}
+}
 
 
 
