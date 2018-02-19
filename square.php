@@ -6,17 +6,18 @@ class Square extends Rectangle
 {
 	public function __construct($height)
 	{
-		parent::__construct($height, $height);
+		$this->setWidth($height);
+		$this->setHeight($height);
 	}
 	
 	public function perimeter()
 	{
-		return ($this->getHeight() * 4);
+		return "Perimeter of this square: " . ($this->getHeight()) * 4;
 	}
 	
 	public function area()
 	{
-		return ($this->getHeight() * $this->getHeight());
+		return "Area of this square: " . ($this->getHeight() * $this->getHeight());
 	}
 
 }

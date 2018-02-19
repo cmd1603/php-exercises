@@ -1,7 +1,7 @@
 <?php
 class WordCounter {
 	const ASC = 1;
-	const DESC = 2;
+	const DESC = 0;
 	private $words;
 
 	function __construct($filename) {
@@ -22,4 +22,4 @@ class WordCounter {
 }
 
 $wc = new WordCounter("words.txt");
-$wc->count(WordCounter::DESC);
+$wc->count(WordCounter::ASC);
